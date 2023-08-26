@@ -1,0 +1,445 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout2.cshtml";
+}
+@* thêm giảng viên *@
+<div class="modal fade" id="new" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>THÊM GIẢNG VIÊN</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Họ tên giảng viên
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" id="name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Số điện thoại
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control bg-white" id="telephone" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Địa chỉ
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control bg-white" id="address" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Ngày sinh
+                                                </span>
+                                            </div>
+                                            <input type="date" class="form-control bg-white" id="birthday" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Trạng thái
+                                                </span>
+                                            </div>
+                                            <select class="form-select" aria-label="Default select example" id="create_status">
+                                                <option value="1">Đang dạy</option>
+                                                <option value="0">Nghỉ dạy</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Ảnh
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control bg-white" id="img" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 p-1">
+                                        <img src="" id="anh" style="max-width:60px;max-height:100px" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="button" id="create" class="btn btn-primary" data-bs-dismiss="modal">Thêm mới</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@* Sửa giảng viên  *@
+<div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>CHỈNH SỬA GIẢNG VIÊN</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Họ tên giảng viên
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" id="edit_name" />
+                                            <input type="number" hidden id="edit_id" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Số điện thoại
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control bg-white" id="edit_sdt" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Địa chỉ
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control bg-white" id="edit_address" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Ngày sinh
+                                                </span>
+                                            </div>
+                                            <input type="date" class="form-control bg-white" id="edit_birthday" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12 p-1">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        Trạng thái
+                                                    </span>
+                                                </div>
+                                                <select class="form-select" aria-label="Default select example" id="edit_status">
+                                                    <option value="1">Đang học</option>
+                                                    <option value="2">Học xong</option>
+                                                    <option value="3">Sắp học</option>
+                                                    <option value="0">Bỏ</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 p-1">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        Ảnh
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="form-control bg-white" id="edit_img" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 p-1">
+                                            <img src="" id="anh" style="max-width:60px;max-height:100px" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button type="button" id="save" class="btn btn-primary" data-bs-dismiss="modal">Chỉnh sửa</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h4>THÔNG TIN GIẢNG VIÊN</h4>
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new">
+                    Thêm mới
+                </button>
+            </div>
+            <div class="col-md-3">
+                <span>Số dòng/trang</span>
+            </div>
+            <div class="col-md-2">
+                @Html.DropDownList("Pagesize", new SelectList(ViewBag.Pagesize, "ID", "ID"), new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                <div class="dropdown" style="float:right">
+                    <select class="form-select" aria-label="Default select example" id="status">
+                        <option value="1">Đang dạy</option>
+                        <option value="0">Nghỉ dạy</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        STT
+                    </th>
+                    <th>
+                        Tên giảng viên
+                    </th>
+                    <th>
+                        Số điện thoại
+                    </th>
+                    <th>
+                        Địa chỉ
+                    </th>
+                    <th>
+                        Ngày sinh
+                    </th>
+                    <th>
+                        Trạng thái
+                    </th>
+                    <th>
+                        Ảnh đại diện
+                    </th>
+                    <th>Hành động </th>
+                </tr>
+            </thead>
+
+            <tbody id="tbData"></tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="100" id="pages">
+
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        var giangvien = {
+            init: function () {
+                giangvien.search(1);
+                $("#search").change(function () {
+                    giangvien.search(1);
+                });
+                $("#Pagesize").change(function () {
+                    giangvien.search(1);
+                });
+                $("#status").change(function () {
+                    giangvien.search(1);
+                });
+                $("#create").click(function () {
+                    giangvien.create();
+                    giangvien.search(1);
+                });
+                $('#update').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget)
+                    var id = button.data('whatever')
+
+                    giangvien.getGiangvien(id);
+
+                });
+                $("#save").click(function () {
+                    giangvien.save();
+                    giangvien.search(1);
+                });
+
+            },
+            getGiangvien: function (id) {
+
+                $.ajax({
+                    type: 'get',
+                    dataType: 'JSON',
+                    url: '/Admin/giangvien/getGiangvien/' + id,
+                    success: function (res) {
+                        $("#edit_id").val(res.data.IDgiangvien);
+                        $("#edit_name").val(res.data.name);
+                        $("#edit_sdt").val(res.data.telephone);
+                        $("#edit_address").val(res.data.address);
+                        $("#edit_birthday").val(res.data.birthday);
+                        $("#edit_status").val(res.data.status);
+                        $("#edit_img").val(res.data.img);
+
+                    }
+                });
+            },
+            search: function (index) {
+                var name = $("#search").val();
+                var status = $("#status").val();
+                var size = $("#Pagesize").val();
+                var form = new FormData()
+                form.append("name", name);
+                form.append("size", size);
+                form.append("status", status);
+                form.append("index", index);
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'Json',
+                    contentType: false,
+                    processData: false,
+                    data: form,
+                    url: '/Admin/giangvien/ShowList/',
+                    success: function (res) {
+                        $("#tbData").html(res.data);
+                        $("#pages").html(res.page);
+                    },
+                });
+            },
+            create: function () {
+                var name = $("#name").val();
+                var telephone = $("#telephone").val();
+                var address = $("#address").val();
+                var birthday = $("#birthday").val();
+                var create_status = $("#create_status").val();
+                var img = $("#img").val();
+
+                var form = new FormData()
+                form.append("name", name);
+                form.append("telephone", telephone);
+                form.append("address", address);
+                form.append("birthday", birthday);
+                form.append("status", create_status);
+                form.append("img", img);
+
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'Json',
+                    contentType: false,
+                    processData: false,
+                    data: form,
+                    url: '/Admin/giangvien/Create/',
+                    success: function (res) {
+
+                        _layout.showtoast(res.mess);
+                    },
+                });
+            },
+            save: function () {
+                var id = $("#edit_id").val();
+                var name = $("#edit_name").val();
+                var telephone = $("#edit_sdt").val();
+                var address = $("#edit_address").val();
+                var birthday = $("#edit_birthday").val();
+                var img = $("#edit_img").val();
+                var status = $("#edit_status").val();
+
+
+                var form = new FormData()
+                form.append("id", id);
+                form.append("name", name);
+                form.append("telephone", telephone);
+                form.append("address", address);
+                form.append("birthday", birthday);
+                form.append("img", img);
+                form.append("status", status);
+
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'Json',
+                    contentType: false,
+                    processData: false,
+                    data: form,
+                    url: '/Admin/giangvien/Update/',
+                    success: function (res) {
+
+                        _layout.showtoast(res.mess);
+                    },
+                });
+            },
+
+        }
+        giangvien.init();
+        function goto(i) {
+            giangvien.search(i);
+        }
+    </script>
+}
+

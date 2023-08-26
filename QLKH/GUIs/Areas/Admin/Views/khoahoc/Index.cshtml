@@ -1,0 +1,346 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout2.cshtml";
+}
+@* them khoa hoc *@
+<div class="modal fade" id="new" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>THÊM KHÓA HỌC</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            
+                               
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Tên khóa học
+                                                </span>
+                                            </div>
+                                           
+                                            <input type="text" class="form-control" id="name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                   Mã khóa học
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control bg-white" id="makhoahoc" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Trạng thái
+                                                </span>
+                                            </div>
+                                            <select class="form-select" id=" status" aria-label="Default select example">
+                                               
+                                                <option value="1">Đang học</option>
+                                                <option value="2">Sắp mở</option>
+                                                <option value="0">Kết thúc</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                           
+                           
+                            
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="button" id="create" class="btn btn-primary" data-bs-dismiss="modal">Thêm mới</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@* sửa khóa học *@
+<div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>CHỈNH SỬA NHÂN VIÊN</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                   Tên khóa học
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" id="edit_name" />
+                                            <input type="number" hidden id="edit_id" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                   Mã khóa học
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control bg-white" id="edit_makhoahoc" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                   Trạng thái
+                                                </span>
+                                            </div>
+                                            <select class="form-select" id="edit_status" aria-label="Default select example">
+                                                <option value="1">Đang học</option>
+                                                <option value="2">Sắp mở</option>
+                                                <option value="0">Kết thúc</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button type="button" id="save" class="btn btn-primary" data-bs-dismiss="modal">Chỉnh sửa</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* hiển thị thông tin khóa học *@
+<div class="card">
+    <div class="card-header">
+        <h4>THÔNG TIN KHOÁ HỌC</h4>
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new">
+                    Thêm mới
+                </button>
+            </div>
+            <div class="col-md-3">
+                <span>Số dòng/trang</span>
+            </div>
+            <div class="col-md-2">
+                @Html.DropDownList("Pagesize", new SelectList(ViewBag.Pagesize, "ID", "ID"), new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                <div class="dropdown" style="float:right">
+                    <select class="form-select" aria-label="Default select example" id="status">
+                        
+                        <option value="1">Đang học</option>
+                        <option value="2">Sắp mở</option>
+                        <option value="0">Kết thúc</option>
+
+                    </select>
+                </div>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        STT
+                    </th>
+                    <th>
+                        Tên khóa học
+                    </th>
+                    <th>
+                        Mã khóa học
+                    </th>
+                    <th>
+                        Trạng thái
+                    </th>
+
+                    <th>Hành động </th>
+                </tr>
+            </thead>
+
+            <tbody id="tbData"></tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="100" id="pages">
+
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+
+            var khoahoc = {
+                init: function () {
+                    khoahoc.search(1);
+                    $("#search").change(function () {
+                        khoahoc.search(1);
+                    });
+                    $("#Pagesize").change(function () {
+                        khoahoc.search(1);
+                    });
+                    $("#status").change(function () {
+                        khoahoc.search(1);
+                    });
+                    $("#create").click(function () {
+                        khoahoc.create();
+                    });
+                    $('#update').on('show.bs.modal', function (event) {
+                        var button = $(event.relatedTarget)
+                        var id = button.data('whatever')
+
+                        khoahoc.getKhoahoc(id);
+
+                    });
+                    $("#save").click(function () {
+                        khoahoc.save();
+                        khoahoc.search(1);
+                    });
+
+                },
+                getKhoahoc: function (id) {
+
+
+                    $.ajax({
+                        type: 'get',
+                        dataType: 'JSON',
+                        url: '/Admin/khoahoc/getKhoahoc/' + id,
+                        success: function (res) {
+                            $("#edit_id").val(res.data.IDkhoahoc);
+                            $("#edit_name").val(res.data.name);
+                            $("#edit_makhoahoc").val(res.data.makhoahoc);
+                            $("#edit_status").val(res.data.status);                          
+
+                        }
+                    });
+                },
+                search: function (index) {
+                    var name = $("#search").val();
+                    var status = $("#status").val();
+                    var size = $("#Pagesize").val();
+                    var form = new FormData()
+                    form.append("name", name);
+                    form.append("size", size);
+                    form.append("status", status);
+                    form.append("index", index);
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'Json',
+                        contentType: false,
+                        processData: false,
+                        data: form,
+                        url: '/Admin/khoahoc/ShowList/',
+                        success: function (res) {
+                            $("#tbData").html(res.data);
+                            $("#pages").html(res.page);
+                        },
+                    });
+                },
+                create: function () {
+                    var name = $("#name").val();
+                    var makhoahoc = $("#makhoahoc").val();
+                    var status = $("#status").val();
+                   
+                    var form = new FormData()
+                    form.append("name", name);
+                    form.append("makhoahoc", makhoahoc);
+                    form.append("status", status);
+                   
+
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'Json',
+                        contentType: false,
+                        processData: false,
+                        data: form,
+                        url: '/Admin/khoahoc/Create/',
+                        success: function (res) {
+
+                            _layout.showtoast(res.mess);
+                        },
+                    });
+                },
+                save: function () {
+                    var id = $("#edit_id").val();
+                    var name = $("#edit_name").val();
+                    var makhoahoc = $("#edit_makhoahoc").val();
+                    
+                    var status = $("#edit_status").val();
+
+                    var form = new FormData()
+                    form.append("id", id);
+                    form.append("name", name);
+                    form.append("makhoahoc", makhoahoc);                   
+                    form.append("status", status);
+                    
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'Json',
+                        contentType: false,
+                        processData: false,
+                        data: form,
+                        url: '/Admin/khoahoc/Update/',
+                        success: function (res) {
+
+                            _layout.showtoast(res.mess);
+                        },
+                    });
+                },
+
+        }
+        khoahoc.init();
+        function goto(i) {
+            khoahoc.search(i);
+            }
+    </script>
+}
