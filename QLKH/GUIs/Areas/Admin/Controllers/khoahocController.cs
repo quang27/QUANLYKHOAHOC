@@ -32,13 +32,15 @@ namespace GUIs.Areas.Admin.Controllers
 
             khoahocDAO khoahoc = new khoahocDAO();
             KHOAHOC item = new KHOAHOC();
-            item.name = name;
-            item.makhoahoc = makhoahoc;
-            
-            item.status = status;
-            
-            khoahoc.InsertOrUpdate(item);
-            return Json(new { mess = "Thêm khóa học thành công" }, JsonRequestBehavior.AllowGet);
+            if (khoahoc.Kiemtra(makhoahoc) == true)
+            {
+                item.name = name;
+                item.makhoahoc = makhoahoc;
+                item.status = status;
+                khoahoc.InsertOrUpdate(item);
+                return Json(new { mess = "Thêm khóa học thành công" }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { mess = "Thêm khóa học không thành công" }, JsonRequestBehavior.AllowGet);
         }
 
        
@@ -49,7 +51,6 @@ namespace GUIs.Areas.Admin.Controllers
             var item = khoahoc.getItem(id);
             item.name = name;
             item.makhoahoc = makhoahoc;
-
             item.status = status;
             khoahoc.InsertOrUpdate(item);
             return Json(new { mess = "Chỉnh sửa khóa học thành công" }, JsonRequestBehavior.AllowGet);

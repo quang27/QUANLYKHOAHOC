@@ -71,5 +71,23 @@ namespace GUIs.Models.DAO
             context.KHOAHOC.Remove(x);
             context.SaveChanges();
         }
+        public Boolean Kiemtra(string makhoahoc)
+        {
+
+            var query = (from a in context.KHOAHOC
+                         where (a.makhoahoc == makhoahoc)
+                         select new khoahocVIEW
+                         {
+                             IDkhoahoc = a.IDkhoahoc,
+                             name = a.name,
+                             makhoahoc = a.makhoahoc,
+                             status = a.status,
+                         }).FirstOrDefault();
+            if (query == null)
+                return true;
+            return false;
+            
+        }
+
     }
 }

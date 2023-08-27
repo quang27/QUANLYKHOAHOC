@@ -50,13 +50,13 @@ namespace GUIs.Areas.Admin.Controllers
             lophocDAO.InsertOrUpdate(item);
             return Json(new { mess = "Chỉnh sửa lớp học thành công" }, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult ShowList(string name = "", int status = 1, int index = 1, int size = 10)
+        public JsonResult ShowList(string name = "",int IDkhoahoc=1, int status = 1, int index = 1, int size = 10)
         {
 
             lophocDAO lophoc = new lophocDAO();
             int total = 0;
 
-            var query = lophoc.Search(name, status, out total, index, size);
+            var query = lophoc.Search(name, status, IDkhoahoc, out total, index, size);
             string text = "";
 
             foreach (var item in query)
@@ -71,7 +71,7 @@ namespace GUIs.Areas.Admin.Controllers
                 text += "<td>" +
                     "<a href='javacript:void(0)' data-toggle='modal' data-target='#update' data-whatever='" + item.IDlophoc + "'><i class='fa fa-edit'></i></a>" + "";
 
-                text += " <a href='/Admin/nhanvien/Delete/" + item.IDlophoc + "'><i class='fa fa-trash' aria-hidden='true'></i> </a></td>";
+                text += " <a href='/Admin/lophoc/Delete/" + item.IDlophoc + "'><i class='fa fa-trash' aria-hidden='true'></i> </a></td>";
                 text += "</tr>";
             }
             string page = Support.Support.InTrang(total, index, size);
@@ -88,6 +88,7 @@ namespace GUIs.Areas.Admin.Controllers
             lophocDAO lophoc = new lophocDAO();
 
             var query = lophoc.getItemView(id);
+
             return Json(new { data = query }, JsonRequestBehavior.AllowGet);
         }
     }

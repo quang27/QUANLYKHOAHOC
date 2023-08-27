@@ -59,11 +59,11 @@ namespace GUIs.Models.DAO
                          }).ToList();
             return query;
         }
-        public List<lophocVIEW> Search(String name, int status, out int total, int index = 1, int size = 10)
+        public List<lophocVIEW> Search(String name, int status,int IDkhoahoc, out int total, int index = 1, int size = 10)
         {
             var query = (from a in context.LOPHOC
                          join b in context.KHOAHOC on a.IDkhoahoc equals b.IDkhoahoc
-                         where (a.name.Contains(name) && (a.status == status))
+                         where (a.name.Contains(name) && (a.status == status) &&(b.IDkhoahoc== IDkhoahoc))
                          select new lophocVIEW
                          {
                              IDlophoc = a.IDlophoc,

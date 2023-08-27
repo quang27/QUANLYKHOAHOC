@@ -131,7 +131,9 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\giangvienController.cs" />
     <Compile Include="Areas\Admin\Controllers\khoahocController.cs" />
+    <Compile Include="Areas\Admin\Controllers\lopgiangvienController.cs" />
     <Compile Include="Areas\Admin\Controllers\lophocController.cs" />
+    <Compile Include="Areas\Admin\Controllers\lopsinhvienController.cs" />
     <Compile Include="Areas\Admin\Controllers\sinhvienController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -139,7 +141,9 @@
     </Compile>
     <Compile Include="Models\DAO\giangvienDAO.cs" />
     <Compile Include="Models\DAO\khoahocDAO.cs" />
+    <Compile Include="Models\DAO\lopgiangvienDAO.cs" />
     <Compile Include="Models\DAO\lophocDAO.cs" />
+    <Compile Include="Models\DAO\lopsinhvienDAO.cs" />
     <Compile Include="Models\DAO\sinhvienDAO.cs" />
     <Compile Include="Models\EF\dbContext.cs" />
     <Compile Include="Models\EF\GIANGVIEN.cs" />
@@ -150,7 +154,9 @@
     <Compile Include="Models\EF\SINHVIEN.cs" />
     <Compile Include="Models\VIEW\giangvienVIEW.cs" />
     <Compile Include="Models\VIEW\khoahocVIEW.cs" />
+    <Compile Include="Models\VIEW\lopgiangvienVIEW.cs" />
     <Compile Include="Models\VIEW\lophocVIEW.cs" />
+    <Compile Include="Models\VIEW\lopsinhvienVIEW.cs" />
     <Compile Include="Models\VIEW\sinhvienVIEW.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\Support.cs" />
@@ -2487,6 +2493,15 @@
     <Content Include="Areas\Admin\Views\khoahoc\Index.cshtml" />
     <Content Include="Areas\Admin\Views\sinhvien\Index.cshtml" />
     <Content Include="Areas\Admin\Views\giangvien\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\lophoc\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\giangvien\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\khoahoc\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\sinhvien\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\lophoc\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\lopgiangvien\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\lopgiangvien\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\lopsinhvien\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\lopsinhvien\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2516,7 +2531,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\lophoc\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

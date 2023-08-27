@@ -1,0 +1,308 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout2.cshtml";
+}
+
+@* thêm giảng viên vào lớp *@
+<div class="modal fade" id="new" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>THÊM GIẢNG VIÊN VÀO LỚP</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Họ tên giảng viên
+                                                </span>
+                                            </div>
+                                            @Html.DropDownList("listgiangvien", new SelectList(ViewBag.listgiangvien, "IDgiangvien", "name"), new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Tên lớp
+                                                </span>
+                                            </div>
+                                            @Html.DropDownList("listlophoc", new SelectList(ViewBag.listlophoc, "IDlophoc", "name"), new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="button" id="create" class="btn btn-primary" data-bs-dismiss="modal">Thêm mới</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* sửa lớp giảng viên *@
+<div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>CHỈNH SỬA GIẢNG VIÊN TRONG LỚP</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Tên giảng viên
+                                                </span>
+                                            </div>
+                                            @Html.DropDownList("edit_giangvien", new SelectList(ViewBag.listgiangvien, "IDgiangvien", "name"), new { @class = "form-control" })
+                                            <input type="number" hidden id="edit_id" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 p-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    Tên lớp học
+                                                </span>
+                                            </div>
+                                            @Html.DropDownList("edit_lophoc", new SelectList(ViewBag.listlophoc, "IDlophoc", "name"), new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                         
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button type="button" id="save" class="btn btn-primary" data-bs-dismiss="modal">Chỉnh sửa</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@* hiển thị thông tin giảng viên trong lớp *@
+<div class="card">
+    <div class="card-header">
+        <h4>THÔNG TIN GIẢNG VIÊN TRONG LỚP</h4>
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new">
+                    Thêm mới
+                </button>
+            </div>
+            <div class="col-md-1">
+                <span>Lớp học</span>
+            </div>
+            <div class="col-md-2">
+                @Html.DropDownList("listlophoc", new SelectList(ViewBag.listlophoc, "IDlophoc", "name"), new { @class = "form-control" })
+            </div>
+
+            <div class="col-md-3">
+                <span>Số dòng/trang</span>
+            </div>
+            <div class="col-md-2">
+                @Html.DropDownList("Pagesize", new SelectList(ViewBag.Pagesize, "ID", "ID"), new { @class = "form-control" })
+            </div>
+
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        STT
+                    </th>
+                    <th>
+                        Giảng viên
+                    </th>
+                    <th>
+                        Lớp học
+                    </th>
+                    <th>Hành động </th>
+                </tr>
+            </thead>
+
+            <tbody id="tbData"></tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="100" id="pages">
+
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        var lopgiangvien = {
+            init: function () {
+                lopgiangvien.search(1);
+                $("#search").change(function () {
+                    lopgiangvien.search(1);
+                });
+                $("#Pagesize").change(function () {
+                    lopgiangvien.search(1);
+                });
+                $("#listlophoc").change(function () {
+                    lopgiangvien.search(1);
+                });
+                $("#create").click(function () {
+                    lopgiangvien.create();
+                    lopgiangvien.search(1);
+                });
+                $('#update').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget)
+                    var id = button.data('whatever')
+
+                    lopgiangvien.getLopgiangvien(id);
+
+                });
+                $("#save").click(function () {
+                    lopgiangvien.save();
+                    lopgiangvien.search(1);
+                });
+
+            },
+            getLopgiangvien: function (id) {
+
+                $.ajax({
+                    type: 'get',
+                    dataType: 'JSON',
+                    url: '/Admin/lopgiangvien/getLopgiangvien/' + id,
+                    success: function (res) {
+                        $("#edit_id").val(res.data.ID);
+                        $("#edit_giangvien").val(res.data.IDgiangvien);
+                        $("#edit_lophoc").val(res.data.IDlophoc);
+                       
+
+                    }
+                });
+            },
+            search: function (index) {
+                var IDlophoc = $("#listlophoc").val();
+                var size = $("#Pagesize").val();
+                var form = new FormData()
+                form.append("IDlophoc", IDlophoc);
+                form.append("size", size);
+                form.append("index", index);
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'Json',
+                    contentType: false,
+                    processData: false,
+                    data: form,
+                    url: '/Admin/lopgiangvien/ShowList/',
+                    success: function (res) {
+                        $("#tbData").html(res.data);
+                        $("#pages").html(res.page);
+                    },
+                });
+            },
+            create: function () {
+                var listgiangvien = $("#listgiangvien").val();
+                var listlophoc = $("#listlophoc").val();
+
+                var form = new FormData()
+                form.append("IDgiangvien", listgiangvien);
+                form.append("IDlophoc", listlophoc);
+
+
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'Json',
+                    contentType: false,
+                    processData: false,
+                    data: form,
+                    url: '/Admin/lopgiangvien/Create/',
+                    success: function (res) {
+
+                        _layout.showtoast(res.mess);
+                    },
+                });
+            },
+            save: function () {
+                var id = $("#edit_id").val();
+                var IDgiangvien = $("#edit_giangvien").val();
+                var IDlophoc = $("#edit_lophoc").val();
+               
+                var form = new FormData()
+                form.append("id", id);
+                form.append("IDgiangvien", IDgiangvien);
+                form.append("IDlophoc", IDlophoc);
+               
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'Json',
+                    contentType: false,
+                    processData: false,
+                    data: form,
+                    url: '/Admin/lopgiangvien/Update/',
+                    success: function (res) {
+
+                        _layout.showtoast(res.mess);
+                    },
+                });
+            },
+
+        }
+        lopgiangvien.init();
+        function goto(i) {
+            lopgiangvien.search(i);
+        }
+    </script>
+}

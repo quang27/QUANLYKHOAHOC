@@ -73,18 +73,20 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>QUẢN LÝ CỬA HÀNG</span>
+                    <span>QUẢN LÝ KHÓA HỌC</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Quản Lý Cửa Hàng</h6>
+                        <h6 class="collapse-header">Quản Lý Khóa Học</h6>
 
                         <!--@Html.ActionLink("Thếm sách", "Create", "Sach", new { area = "Admin" }, new { @class = "collapse-item" })--><!-- Sinh ra 1 thẻ a: <a href='/Admin/Sach/Create/'>Theem sacsh</a>-->
-                        @Html.ActionLink("Quản lý sản phẩm", "Index", "sanpham", new { area = "Admin" }, new { @class = "collapse-item" })
-                        @Html.ActionLink("Quản lý nhân viên", "Index", "nhanvien", new { area = "Admin" }, new { @class = "collapse-item" })
-                        @Html.ActionLink("Quản lý khách hàng ", "Index", "khachhang", new { area = "Admin" }, new { @class = "collapse-item" })
-                        @Html.ActionLink("Quản lý hóa đơn", "Index", "hoadon", new { area = "Admin" }, new { @class = "collapse-item" })
-                       
+                        @Html.ActionLink("Quản lý giảng viên", "Index", "giangvien", new { area = "Admin" }, new { @class = "collapse-item" })
+                        @Html.ActionLink("Quản lý khóa học", "Index", "khoahoc", new { area = "Admin" }, new { @class = "collapse-item" })
+                        @Html.ActionLink("Quản lý lớp học ", "Index", "lophoc", new { area = "Admin" }, new { @class = "collapse-item" })
+                        @Html.ActionLink("Quản lý sinh viên", "Index", "sinhvien", new { area = "Admin" }, new { @class = "collapse-item" })
+                        @Html.ActionLink("Quản lý giảng viên trong lớp", "Index", "lopgiangvien", new { area = "Admin" }, new { @class = "collapse-item" })
+                        @Html.ActionLink("Quản lý sinh viên trong lớp", "Index", "lopsinhvien", new { area = "Admin" }, new { @class = "collapse-item" })
+
                         <!-- <a class="collapse-item" href="cards.html">Thêm nhân viên</a>-->
                     </div>
                 </div>
